@@ -15,7 +15,7 @@
             <Font size="36.0" />
          </font>
       </Label>
-      <ProgressBar fx:id="songProgressBar" layoutY="70.0" prefHeight="20.0" prefWidth="632.0" progress="0.0" />
+      <ProgressBar fx:id="songProgressBar" disable="true" layoutY="70.0" prefHeight="20.0" prefWidth="632.0" progress="0.0" />
       <Button fx:id="playButton" layoutY="90.0" mnemonicParsing="false" onAction="#playMedia" prefHeight="59.0" prefWidth="68.0" text="PLAY" />
       <Button fx:id="pauseButton" layoutX="68.0" layoutY="90.0" mnemonicParsing="false" onAction="#pauseMedia" prefHeight="59.0" prefWidth="68.0" text="PAUSE" />
       <Button fx:id="previousButton" layoutX="136.0" layoutY="90.0" mnemonicParsing="false" onAction="#previousMedia" prefHeight="59.0" prefWidth="68.0" text="PREV" />
@@ -23,5 +23,6 @@
       <Button fx:id="resetButton" layoutX="272.0" layoutY="90.0" mnemonicParsing="false" onAction="#resetMedia" prefHeight="59.0" prefWidth="68.0" text="RESET" />
       <ComboBox fx:id="speedBox" layoutX="340.0" layoutY="90.0" onAction="#changeSpeed" prefHeight="59.0" prefWidth="95.0" promptText="SPEED" />
       <Slider fx:id="volumeSlider" blockIncrement="2.0" layoutX="441.0" layoutY="112.0" prefHeight="16.0" prefWidth="189.0" value="50.0" />
+      <Slider fx:id="progressSlider" layoutY="69.0" prefHeight="16.0" prefWidth="632.0" />
    </children>
 </AnchorPane>

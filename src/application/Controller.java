@@ -7,6 +7,10 @@ import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ReadOnlyObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -34,7 +38,7 @@ public class Controller implements Initializable{
     private ComboBox<String> speedBox;
     
     @FXML
-    private Slider volumeSlider;
+    private Slider volumeSlider, progressSlider;
     
     @FXML
     private ProgressBar songProgressBar;
@@ -86,6 +90,28 @@ public class Controller implements Initializable{
             
         });
         
+        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Duration> arg0, Duration arg1, Duration arg2) {
+                progressSlider.setValueChanging(running);
+                double currentTime =  100 * (arg0.getValue().toSeconds()/mediaPlayer.getTotalDuration().toSeconds());
+                progressSlider.adjustValue(currentTime);
+            }
+            
+        });
+        
+        progressSlider.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
+                double totalDuration = mediaPlayer.getTotalDuration().toSeconds();
+                double seekTime = (arg2.doubleValue() / 100) * totalDuration;
+                mediaPlayer.seek(Duration.millis(seekTime));
+                
+            }
+            
+        });
         songProgressBar.setStyle("-fx-accent:#00FF00");
     }
     
